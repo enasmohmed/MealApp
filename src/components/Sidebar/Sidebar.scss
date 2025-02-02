@@ -1,0 +1,27 @@
+.sidebar-container {
+  @apply w-64 min-h-screen bg-gray-50 flex flex-col items-center py-6 shadow-md;
+  
+  .logo {
+    @apply mb-6;
+    
+    
+  }
+
+  
+  .menu {
+    @apply flex flex-col gap-3 w-full px-4;
+
+    .menu-item {
+      @apply w-full text-left px-4 py-3 text-lg font-semibold rounded-lg transition-all duration-300;
+      @apply bg-white text-gray-700 border border-gray-300 shadow-sm;
+      
+      &:hover {
+        @apply bg-orange-500 text-white;
+      }
+
+      &.active {
+        @apply bg-orange-500 text-white;
+      }
+    }
+  }
+}

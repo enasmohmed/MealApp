@@ -1,0 +1,146 @@
+body {
+    background-color: #f7f5ef;
+
+}
+
+.pacifico-font {
+    font-family: 'Pacifico', serif;
+}
+
+.meal-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+
+    /* عنوان الوجبة بعرض الصفحة */
+    .meal-header {
+        width: 100%;
+
+        padding: 10px 0;
+
+
+
+        h1 {
+            font-size: 2.9rem;
+            color: #000;
+            font-weight: bold;
+            margin: 0;
+        }
+    }
+
+    /* الحاوية الرئيسية */
+    .meal-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        width: 100%;
+
+        /* الجزء الأيسر */
+        /* الحاوية لعرض الصورة والتعليمات بجانب بعض */
+        .left-section {
+            display: flex;
+            flex-direction: row;
+            /* ترتيب العناصر بجانب بعضها أفقيًا */
+            gap: 20px;
+            /* مسافة بين العناصر */
+
+            /* تنسيق الصورة */
+            .meal-image {
+                flex: 1;
+
+                /* الصورة تشغل جزءًا متناسقًا من المساحة */
+                img {
+                    max-width: 100%;
+                    border-radius: 10px;
+                    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                }
+            }
+
+            /* تنسيق التعليمات */
+            .meal-instructions {
+                flex: 2;
+                /* التعليمات تشغل جزءًا أكبر من المساحة */
+                padding: 20px;
+
+                font-size: 16px;
+                line-height: 1.6;
+                overflow: auto;
+                /* في حالة النص طويل جدًا */
+            }
+
+            .meal-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+
+                .btn {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    font-size: 1rem;
+                    font-weight: bold;
+                    color: #fff;
+                    cursor: pointer;
+                    text-transform: capitalize;
+                    text-decoration: none;
+
+                    &.youtube {
+                        background-color: #c50d0df3;
+                    }
+
+                    &.source {
+                        background-color: #3dc43d;
+                    }
+                }
+            }
+
+
+        }
+
+
+
+
+
+        /* الجزء الأيمن */
+        .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+
+            .meal-ingredients {
+                h2 {
+                    font-size: 1.5rem;
+                    margin-bottom: 10px;
+                    border-bottom: 2px solid #ddd;
+                    padding-bottom: 5px;
+                }
+
+                ul {
+                    list-style: none;
+                    padding: 0;
+
+                    li {
+                        display: flex;
+                        justify-content: space-between;
+                        padding: 5px 0;
+                        border-bottom: 1px solid #f0f0f0;
+
+                        span {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
