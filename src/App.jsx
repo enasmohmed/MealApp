@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createHashRouter ,createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
 import Layout from './components/Layout/Layout'
 import Sidebar from './components/Sidebar/Sidebar'
@@ -13,7 +13,7 @@ import Home from './components/Home/Home'
 function App() {
   const [count, setCount] = useState(0)
 
-  let router = createBrowserRouter([
+  let router = createHashRouter([
     {path:"", element:<Layout />, children: [
       {path:"", element:<Home />},
       {path:"/categories", element:<CategoryTabs />},

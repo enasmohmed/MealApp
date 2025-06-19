@@ -57,43 +57,44 @@ export default function Home() {
       />
 
       {/* Meal Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-        {meals.map((meal) => (
-          <div
-            key={meal.idMeal}
-            className="relative bg-white shadow-lg p-6 border hover:shadow-xl transition-shadow duration-300"
-          >
-            {/* Meal Image */}
-            <div className="relative -top-5 flex justify-center ">
-              <div className="w-23 h-23 rounded-md overflow-hidden border-4 border-white shadow-lg">
-                <img
-                  className="w-full h-full object-cover"
-                  src={meal.strMealThumb}
-                  alt={meal.strMeal}
-                />
-              </div>
-            </div>
-
-            {/* Meal Details */}
-            <div className="mt-0">
-              <h2 className="text-lg font-bold text-center text-gray-800 mb-2">
-                {meal.strMeal}
-              </h2>
-              {activeTab === "All" && (
-                <div className="flex items-center justify-center text-gray-600 mt-2">
-                  <Globe className="w-4 h-4 mr-2 text-green-600" />
-                  <span>{meal.strArea}</span>
-                </div>
-              )}
-              <Link to={`/meal/${meal.idMeal}`}>
-                <button className="block mt-4 px-4 py-2 bg-green-500 text-white text-sm font-medium rounded-full mx-auto hover:bg-green-600">
-                  View Recipe
-                </button>
-              </Link>
-            </div>
-          </div>
-        ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+  {meals.map((meal) => (
+    <div
+      key={meal.idMeal}
+      className="relative bg-white shadow-md p-4 border rounded-lg hover:shadow-xl transition duration-300 flex flex-col items-center"
+    >
+      {/* Meal Image */}
+      <div className="w-full h-40 overflow-hidden rounded-lg mb-4">
+        <img
+          className="w-full h-full object-cover"
+          src={meal.strMealThumb}
+          alt={meal.strMeal}
+        />
       </div>
+
+      {/* Meal Title */}
+      <h2 className="text-base md:text-lg font-semibold text-center text-gray-800 mb-1">
+        {meal.strMeal}
+      </h2>
+
+      {/* Area (Only for "All") */}
+      {activeTab === "All" && (
+        <div className="flex items-center justify-center text-gray-600 text-sm mb-2">
+          <Globe className="w-4 h-4 mr-1 text-green-600" />
+          <span>{meal.strArea}</span>
+        </div>
+      )}
+
+      {/* Button */}
+      <Link to={`/meal/${meal.idMeal}`} className="mt-auto">
+        <button className="px-4 py-2 bg-green-500 text-white text-sm font-medium rounded-full hover:bg-green-600 transition">
+          View Recipe
+        </button>
+      </Link>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 }
