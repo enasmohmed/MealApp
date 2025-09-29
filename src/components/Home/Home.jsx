@@ -4,11 +4,16 @@ import { Globe } from "lucide-react";
 import axios from "axios";
 import CategoryTabs from "../CategoryTabs/CategoryTabs";
 import "./Home.scss";
+import Pagination from "../Pagination/Pagination";
 
 export default function Home() {
   const [meals, setMeals] = useState([]);
   const [activeTab, setActiveTab] = useState("All");
   const [categories, setCategories] = useState([]);
+
+    // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const mealsPerPage = 8;
 
   // Fetch meal categories
   useEffect(() => {
@@ -42,6 +47,16 @@ export default function Home() {
     fetchMeals();
   }, [activeTab]);
 
+
+  // Pagination logic
+  const indexOfLastMeal = currentPage * mealsPerPage;
+  const indexOfFirstMeal = indexOfLastMeal - mealsPerPage;
+  const currentMeals = meals.slice(indexOfFirstMeal, indexOfLastMeal);
+
+  const totalPages = Math.ceil(meals.length / mealsPerPage);
+
+
+
   return (
     <div className="p-4 bg-[#fef6e4] min-h-screen">
       {/* Title */}
@@ -57,43 +72,49 @@ export default function Home() {
       />
 
       {/* Meal Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-  {meals.map((meal) => (
-    <div
-      key={meal.idMeal}
-      className="relative bg-white shadow-md p-4 border rounded-lg hover:shadow-xl transition duration-300 flex flex-col items-center"
-    >
-      {/* Meal Image */}
-      <div className="w-full h-40 overflow-hidden rounded-lg mb-4">
-        <img
-          className="w-full h-full object-cover"
-          src={meal.strMealThumb}
-          alt={meal.strMeal}
-        />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-10">
+        {currentMeals.map((meal) => (
+          <div
+            key={meal.idMeal}
+            className="relative bg-white shadow-md p-4 border rounded-lg hover:shadow-xl transition duration-300 flex flex-col items-center"
+          >
+            {/* Meal Image */}
+            <div className="w-full h-40 overflow-hidden rounded-lg mb-4">
+              <img
+                className="w-full h-full object-cover"
+                src={meal.strMealThumb}
+                alt={meal.strMeal}
+              />
+            </div>
+
+            {/* Meal Title */}
+            <h2 className="text-base md:text-lg font-semibold text-center text-gray-800 mb-1">
+              {meal.strMeal}
+            </h2>
+
+            {/* Area (Only for "All") */}
+            {activeTab === "All" && (
+              <div className="flex items-center justify-center text-gray-600 text-sm mb-2">
+                <Globe className="w-4 h-4 mr-1 text-green-600" />
+                <span>{meal.strArea}</span>
+              </div>
+            )}
+
+            {/* Button */}
+            <Link to={`/meal/${meal.idMeal}`} className="mt-auto">
+              <button className="px-4 py-2 bg-green-500 text-white text-sm font-medium rounded-full hover:bg-green-600 transition">
+                View Recipe
+              </button>
+            </Link>
+          </div>
+        ))}
       </div>
 
-      {/* Meal Title */}
-      <h2 className="text-base md:text-lg font-semibold text-center text-gray-800 mb-1">
-        {meal.strMeal}
-      </h2>
-
-      {/* Area (Only for "All") */}
-      {activeTab === "All" && (
-        <div className="flex items-center justify-center text-gray-600 text-sm mb-2">
-          <Globe className="w-4 h-4 mr-1 text-green-600" />
-          <span>{meal.strArea}</span>
-        </div>
-      )}
-
-      {/* Button */}
-      <Link to={`/meal/${meal.idMeal}`} className="mt-auto">
-        <button className="px-4 py-2 bg-green-500 text-white text-sm font-medium rounded-full hover:bg-green-600 transition">
-          View Recipe
-        </button>
-      </Link>
-    </div>
-  ))}
-</div>
+      <Pagination 
+        totalPages={totalPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
 
     </div>
   );
