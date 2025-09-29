@@ -30,12 +30,15 @@
 
 ## 🖼️ Screenshots
 
-```md
-![Home Screen](../MealApp/src/assets/images/screenshot/home.png)
-![Meal Details](../MealApp/src/assets/images/screenshot/details.png)
-```
 
-> **ملاحظة:** ارفع الصور بنفس الأسماء داخل المجلد `assets` ثم اضف commit و push.
+### 🖼️ Home Page
+![Meal Details](src/assets/images/screenshot/home.png)
+
+### 🖼️ Meal Details Page
+
+![Meal Details](src/assets/images/screenshot/details.png)
+
+
 
 ---
 
