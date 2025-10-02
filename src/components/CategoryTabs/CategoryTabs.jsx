@@ -2,7 +2,7 @@ import React from "react";
 
 export default function CategoryTabs({ categories, activeTab, setActiveTab }) {
   return (
-    <div className="flex flex-wrap justify-center mb-6">
+    <div className="flex flex-wrap justify-center mb-6 p-3">
       {/* All tab */}
       <button
         className={`p-4 rounded-full ${
